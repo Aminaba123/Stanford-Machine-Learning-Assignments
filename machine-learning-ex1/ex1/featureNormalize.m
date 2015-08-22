@@ -26,8 +26,9 @@ sigma = zeros(1, size(X, 2));
 % Hint: You might find the 'mean' and 'std' functions useful.
 %       
 
-
-
+mu = mean(X, 1);    %mean(X, 1) for column vectors, mean(X, 2) for row vectors.
+sigma = std(X, 1);
+X_norm = (X - repmat(mu, size(X, 1), 1)) ./ repmat(sigma, size(X, 1), 1);
 
 
 
