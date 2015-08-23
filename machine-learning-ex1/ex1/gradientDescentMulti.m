@@ -18,7 +18,7 @@ for iter = 1:num_iters
     %
     
     %   a vectorized way
-    theta = theta - alpha * (1/m) * ((X*theta - y)' * X)'; 
+    theta = theta - alpha * (1 / m) * ((X * theta - y)' * X)'; 
     
     %   theta_temp = zeros(size(X, 2), 1);      % synchronized
     %   for i = 1 : size(theta)     % here i means the num of features
