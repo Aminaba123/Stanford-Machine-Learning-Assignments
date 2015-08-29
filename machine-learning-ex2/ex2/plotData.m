@@ -12,7 +12,12 @@ figure; hold on;
 %               examples and 'ko' for the negative examples.
 %
 
-
+pos = find(y == 1);
+neg = find(y == 0);
+% Here, k means 'black', y means 'yello', +/o means symbol
+% MarkerFaceColor means the point color, MarkerSize means the point size.
+plot(X(pos, 1), X(pos, 2), 'b+', 'LineWidth', 2, 'MarkerSize', 7);
+plot(X(neg, 1), X(neg, 2), 'ko', 'MarkerFaceColor', 'y', 'MarkerSize', 7);
 
 
 
