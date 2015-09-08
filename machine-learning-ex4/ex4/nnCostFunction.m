@@ -62,24 +62,35 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 
+h1 = sigmoid([ones(m, 1) X] * Theta1');
+h2 = sigmoid([ones(m, 1) h1] * Theta2');
+h = h2;
+for k = 1 : num_labels
+    yk = (y == k);  % yk means the k-th label
+    hk = h(:,k);      % hk means the k-th output
+    J = J + -1 / m * (yk' * log(hk) + (1 - yk)' * log(1 - hk));
+end
+Theta1_temp = Theta1(:,2:end);
+Theta2_temp = Theta2(:,2:end);
+theta_temp = [Theta1_temp(:); Theta2_temp(:)];
+J = J + lambda / (2*m) * sum(theta_temp.^2);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+for t = 1:m
+    a1 = [1; X(t,:)'];
+    z2 = Theta1 * a1;
+    a2 = [1; sigmoid(z2)];
+    z3 = Theta2 * a2;
+    a3 = sigmoid(z3);
+    yk = (1:num_labels)' == y(t);
+    delta3 = a3 - yk;
+    delta2 = Theta2(:,2:end)' * delta3 .* sigmoidGradient(z2);
+    Theta1_grad = Theta1_grad + delta2 * a1';
+    Theta2_grad = Theta2_grad + delta3 * a2';
+end
+Theta1_grad = Theta1_grad + lambda * [zeros(hidden_layer_size, 1) Theta1(:,2:end)];
+Theta2_grad = Theta2_grad + lambda * [zeros(num_labels, 1) Theta2(:,2:end)];
+Theta1_grad = Theta1_grad / m;
+Theta2_grad = Theta2_grad / m;
 % -------------------------------------------------------------
 
 % =========================================================================
