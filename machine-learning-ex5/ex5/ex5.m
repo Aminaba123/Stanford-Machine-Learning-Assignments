@@ -164,7 +164,9 @@ pause;
 %  lambda to see how the fit and learning curve change.
 %
 
-lambda = 0;
+% lambda = 1 is appropriate.
+% Change this can see the change of learning curve and polynomial fit.
+lambda = 1;
 [theta] = trainLinearReg(X_poly, y, lambda);
 
 % Plot training data and fit
