@@ -27,6 +27,8 @@ centroids = zeros(K, n);
 %
 
 
+for i = 1 : K
+    centroids(i, :) = sum(X .* repmat((idx == i), 1, n)) / sum(idx == i);    
 
 
 

@@ -22,6 +22,20 @@ idx = zeros(size(X,1), 1);
 %
 
 
+for i = 1 : size(X,1)
+    min_distance = -1;
+    idx(i) = 1;
+    for j = 1 : K
+        distance = sum((X(i, :) - centroids(j, :)) .^ 2);
+        if (min_distance == -1) 
+            min_distance = distance;
+        end;
+        if (distance < min_distance)
+            min_distance = distance;
+            idx(i) = j;
+        end
+    end
+end
 
 
 
